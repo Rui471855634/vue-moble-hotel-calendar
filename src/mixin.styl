@@ -1,0 +1,43 @@
+// 背景图片
+bg-image($url)
+  background-image: url($url + "@2x.png")
+  @media (-webkit-min-device-pixel-ratio: 3),(min-device-pixel-ratio: 3)
+    background-image: url($url + "@3x.png")
+
+// 不换行
+no-wrap()
+  text-overflow: ellipsis
+  overflow: hidden
+  white-space: nowrap
+
+// 扩展点击区域
+extend-click()
+  position: relative
+  &:before
+    content: ''
+    position: absolute
+    top: -10px
+    left: -10px
+    right: -10px
+    bottom: -10px
+
+round($round)
+  border-radius: $round
+  -moz-border-radius: $round
+  -ms-border-radius: $round
+  -webkit-border-radius: $round
+  -o-border-radius: $round
+
+flex($direction, $align, $justify)
+  display: flex
+  display: -webkit-flex
+  box-sizing: border-box
+  flex-direction: $direction
+  align-items: $align
+  justify-content: $justify
+
+gradient($position1, $position2, $color1, $color2)
+  background: -webkit-linear-gradient($position1 $position2, $color1 , $color2); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient($position1 $position2, $color1, $color2); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient($position1 $position2, $color1, $color2); /* Firefox 3.6 - 15 */
+  background: linear-gradient(to $position1 $position2, $color1 , $color2); /* 标准的语法 */
