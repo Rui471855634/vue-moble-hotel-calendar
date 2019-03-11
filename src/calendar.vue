@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="calendar">
-    <div class="cal-trigger" @click="editDate">
+    <!-- <div class="cal-trigger" @click="editDate">
       <div class="cal-result">
         <div class="start-date">
           <span class="date-time">{{getSelectedDate(startDate)}}</span>
@@ -17,7 +17,7 @@
       <div class="cal-total" v-if="dayGap">
         共{{dayGap}}晚
       </div>
-    </div>
+    </div> -->
     <div class="cal-container" :style="wrapperStyle">
       <transition name="slide">
         <div class="cal-wrapper" v-if="show" :style="wrapperStyle">
@@ -132,10 +132,11 @@ export default {
         this.$emit('setEndDate', this.endDate)
         this.dayGap = (this.endDate.getTime() - this.startDate.getTime()) / 1000 / 3600 / 24 + ''
       }
+      this.$emit('change', this.startDate, this.endDate, this.dayGap)
     },
-    getSelectedDate(date) {
-      return dateFtt('MM月dd日', date)
-    },
+    // getSelectedDate(date) {
+    //   return dateFtt('MM月dd日', date)
+    // },
     // 日期格式化
     getDateFormat(date) {
       return dateFtt('yyyy年MM月', new Date(date + '/1'))
@@ -322,12 +323,12 @@ export default {
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus" scoped>
-@import './mixin.styl'
+@import './mixin'
 .cal-trigger
   flex(row, center, space-between)
   // padding: 0 15px
   height: 30px
-  margin: 5px 15px
+  padding: 5px 15px
   .cal-result
     flex(row, center, space-around)
     .date-time
